@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+
+  /* Chrome, Safari and Opera */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+
+  .slide-in {
+    animation: slide-in 1s ease-in;
+  }
+
+  @keyframes slide-in {
+    0% {
+      right: -100%;
+    }
+
+    100% {
+      right: 0%;
+    }
+  }
+}
+
+@layer base {
+  * {
+    @apply font-inter;
+    @apply p-0;
+    @apply m-0;
+    @apply box-border;
+  }
+
+  body {
+    @apply bg-gray-100;
+  }
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media print {
+
+  header,
+  footer,
+  aside,
+  form,
+  .customer-payment,
+  … {
+    display: none;
+  }
+}
+
+iframe#webpack-dev-server-client-overlay{display:none!important}

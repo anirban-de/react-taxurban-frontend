@@ -1,0 +1,8 @@
+customer
+[+] Add client validation in web
+[+] Refetch sr after delete
+
+Set Total Amount - verify
+SR Status - staff
+department head - only assign work
+Additional Documents, Additional Information,Upload Final Documents - staff
