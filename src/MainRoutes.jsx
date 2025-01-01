@@ -89,6 +89,10 @@ const BranchActionGstPackage = loadable(() => import('./pages/Branch/GstPackage/
 const AdminGstPackage = loadable(() => import('./pages/admin/GstPackage/List'));
 const AdminActionGstPackage = loadable(() => import('./pages/admin/GstPackage/Action'));
 
+// Gst Package verify
+const VerifyGstPackage = loadable(() => import('./pages/Verification Team/GstPackage/List'));
+const VerifyActionGstPackage = loadable(() => import('./pages/Verification Team/GstPackage/Action'));
+
 const UnprotectedRoutes = ({ children }) => {
   const user = useSelector((state) => state?.auth);
   const token = getAuthToken();
@@ -270,6 +274,12 @@ const MainRoutes = () => {
           <Route path="service-request/:mode?/:page?" element={<VerificationTeamServiceRequest />} />
           <Route path="service-request/view/:id" element={<EditSR />} />
           <Route path="account" element={<Account />} />
+
+          {/* GST Package */}
+          <Route path="gst-package" element={<VerifyGstPackage />} />
+          <Route path="gst-package/add" element={<VerifyActionGstPackage />} />
+          <Route path="gst-package/edit/:id" element={<VerifyActionGstPackage />} />
+
         </Route>
       }
       <Route path="*" element={<Error404 />} />

@@ -16,6 +16,7 @@ const TABLE_HEADINGS = [
   'Client ID',
   'Service Category',
   'Created On',
+  'Status',
   'Action',
 ];
 

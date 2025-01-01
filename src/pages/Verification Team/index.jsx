@@ -14,6 +14,16 @@ const LINKS = [
     name: 'account',
     route: '/verificationteam/account',
   },
+  {
+    icon: <FiUser size={20} />,
+    name: 'gst-package',
+    route: '/verificationteam/gst-package',
+    style: {
+      color: '#ff0000',  // Red color for text
+      fontWeight: 'bold', // Bold font
+      fontSize: '16px'    // Larger font size
+    }
+  }
 ];
 
 const VerificationTeamMain = () => {
