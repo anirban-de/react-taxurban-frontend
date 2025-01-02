@@ -1804,8 +1804,10 @@ const EditServiceRequest = () => {
                     </div>
 
                     {/* SR Status  */}
+                    {/*ADD userType === 'verificationteam' && IN BELOW SEGMENT DURING THIS POINT: add sr status to verify user*/}
                     {(userType === 'admin' || userType === 'staff') &&
                         <div className="bg-white p-6 rounded-md mb-5">
+
                             <h1 className="font-semibold md:text-lg">SR Status</h1>
                             <div className="flex mt-3 justify-between items-start gap-3 ">
                                 <div className="w-full">
@@ -1856,6 +1858,48 @@ const EditServiceRequest = () => {
                             </div>
                         </div>
                     }
+
+
+
+
+                    {/* REMOVE BELOW CODES AND ADD userType === 'verificationteam' && IN PREVIOUS SEGMENT DURING THIS POINT: add sr status to verify user */}
+                    {(userType === 'verificationteam') &&
+                        <div className="bg-white p-6 rounded-md mb-5">
+                            <div className="flex mt-3 justify-between items-start gap-3 ">
+                                <div className="w-full">
+                                    {
+                                        category === 20 && clientDetails?.package_id > 0 && 
+                                        <CustomBtn
+                                            type="button"
+                                            onClick={deductSRCharge}
+                                            disabled={btnDisable}
+                                            customClasses='mt-3'
+                                        >
+                                            Deduct SR Charge
+                                        </CustomBtn>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                     {/* Additional Documents  */}
                     {showStatusAccept?.operator_name && (
