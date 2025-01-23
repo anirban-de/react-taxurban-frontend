@@ -146,6 +146,7 @@ const Action = () => {
         status: res.data.detail.status,
         srlist: res.data.srlist,
         wallet_balance: res.data.package_remaining_balance,
+        branch_wallet_balance: res.data.branch_wallet_balance,
         package_invoice: res.data.detail.package_invoice,
         paymentstatus: res.data.detail.paymentstatus,
         paymentdate: res.data.detail.paymentdate,
@@ -206,26 +207,40 @@ const Action = () => {
   const walletPayment = async () => {
 
     if(window.confirm('Pay ₹'+packageDetails?.total_price+' for this Package ? ')){
-      try {
-        await axios
-            .post(`api/branch-package-wallet-pay`, {
-                package_id: id,
-            })
-            .then((res) => {
-                if(res.data.status === 200) {
-                    setPayBtnDisable("disabled");
-                    Swal.fire({
-                      title: 'Success!',
-                      text: res.data.message,
-                      icon: 'success',
-                      confirmButtonText: 'Ok',
-                      timer: 5000,
-                    });
-                }
+
+        console.log("branch_wallet_balance "+packageDetails?.branch_wallet_balance);
+
+        if(packageDetails?.branch_wallet_balance < packageDetails?.total_price){
+            Swal.fire({
+              title: 'Insufficient Balance!',
+              text: "Your Wallet Does Not Contain Sufficient Balance to Make Payment for this Package. Please Recharge Your Wallet and Try Again",
+              icon: 'error',
+              confirmButtonText: 'Ok',
+              timer: 9000,
             });
-      } catch (error) {
-          errorToast(error)
-      }      
+            return false;
+        }
+
+        try {
+            await axios
+                .post(`api/branch-package-wallet-pay`, {
+                    package_id: id,
+                })
+                .then((res) => {
+                    if(res.data.status === 200) {
+                        setPayBtnDisable("disabled");
+                        Swal.fire({
+                          title: 'Success!',
+                          text: res.data.message,
+                          icon: 'success',
+                          confirmButtonText: 'Ok',
+                          timer: 5000,
+                        });
+                    }
+                });
+        } catch (error) {
+              errorToast(error)
+        }
     }
   };
 
