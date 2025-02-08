@@ -17,7 +17,8 @@ const AddEditStaff = () => {
     phone: '',
     email: '',
     password: '',
-    department_id: 0,
+    //department_id: 0,
+    department_id: [],
     mandatory: true,
     staff_id: 0,
   });
@@ -32,6 +33,19 @@ const AddEditStaff = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+
+  const handleCheckboxChange = (id) => {
+       setFormData((prevData) => {
+           const isChecked = prevData.department_id.includes(id);
+
+           return {
+               ...prevData,
+               department_id: isChecked
+                   ? prevData.department_id.filter((deptId) => deptId !== id)
+                   : [...prevData.department_id, id],
+           };
+       });
+   };
 
   const setMandatory = () => {
     setFormData({ ...formData, mandatory: !formData.mandatory });
@@ -52,6 +66,7 @@ const AddEditStaff = () => {
               mandatory: res.data.staff.status ? true : false,
               staff_id: id,
             });
+            console.log('formData department_id= '+formData.department_id);
             setLoading(false);
           }
           setLoading(false);
@@ -83,6 +98,11 @@ const AddEditStaff = () => {
   const submitStaff = async () => {
     setErrors([]);
 
+    console.log('formData= '+formData.department_id);
+    //return;
+
+
+
     try {
       const data = {
         formData: formData,
@@ -92,7 +112,7 @@ const AddEditStaff = () => {
         if (res.data.status === 200) {
           dispatch(clearStaffs());
           dispatch(clearPageCount());
-          navigate('/admin/office-management');
+          //navigate('/admin/office-management');
 
           Swal.fire({
             title: 'Success!',
@@ -171,11 +191,12 @@ const AddEditStaff = () => {
                   label={'Enter Password *'}
                 />
 
-                <div>
+
+                {/*<div>
                   <label className="block mb-2 text-xs md:text-sm font-medium text-gray-900 dark:text-gray-300">
                     Select Department
                   </label>
-                  <select multiple 
+                  <select  
                     name="department_id"
                     onChange={updateFormData}
                     className=" mb-2bg-gray-50 border border-gray-300 text-gray-900 text-xs md:text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
@@ -193,7 +214,35 @@ const AddEditStaff = () => {
                       </option>
                     ))}
                   </select>
+                </div>*/}
+
+                
+
+
+
+                <div>
+                {alldepartment.map((option, index) => (
+                  <label key={index} className="flex items-center space-x-2">
+                    <input
+                      className="outline-none text-green-400 rounded-md"
+                      type="checkbox"
+                      key={index}
+                      //checked={option.id === formData.department_id}
+                      checked={formData.department_id.includes(option.id)}
+                      value={option.id} 
+                      //onChange={(e) => updateFormData(e.target.checked)}
+                      onChange={() => handleCheckboxChange(option.id)}
+                    />
+                    <span>{option?.category_name}</span>
+                  </label>
+                ))}
                 </div>
+
+
+
+
+
+
 
                 <div className="flex flex-col items-start justify-start">
                   <p className="mb-4 text-xs md:text-sm">Status</p>

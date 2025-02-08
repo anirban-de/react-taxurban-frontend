@@ -14,7 +14,7 @@ import ActionBtn from '../../../components/shared/ActionBtn';
 const AllStaff = () => {
   const navigation = useNavigate();
   const dispatch = useDispatch();
-  const tableHeadings = ['SN', 'Name', 'Department', 'Actions'];
+  const tableHeadings = ['SN', 'Name', 'Department', 'Action'];
   const allstaff = useSelector((state) => state.office.staffs);
   const [loading, setLoading] = useState(false);
   const [departmentModal, setDepartmentModal] = useState(false);
@@ -128,13 +128,14 @@ const AllStaff = () => {
       return [];
     }
 
-    return [index + 1, data?.name, data?.category_name]
+    //return [index + 1, data?.name, data?.category_name]
+    return [index + 1, data?.staffname, data?.departments]
   }
 
   const ActionBtnsElement = ({ data }) => {
     return (
       <div className="flex gap-3">
-        <ActionBtn tooltip='View Clients' onClick={() => navigation(`/admin/edit-staff/${data?.user_id}`)} >
+        <ActionBtn tooltip='View Staff' onClick={() => navigation(`/admin/edit-staff/${data?.user_id}`)} >
           <FiEdit size={15} className=" text-white" />
         </ActionBtn>
         <ActionBtn tooltip='Delete Customer' onClick={() => deleteStaff(`${data.user_id}`)}>
