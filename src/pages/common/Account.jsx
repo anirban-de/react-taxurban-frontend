@@ -17,9 +17,14 @@ const Account = () => {
 
     const TABS_OPTIONS = [
         { ...(isProfileAllowed && { name: "profile", icon: <FiUser /> }) },
+        
         { ...(isBranchDetailsAllowed && { name: "details", icon: <FiInfo /> }) },
+        
         { name: "password", icon: <FiLock /> },
-        // { name: "support", icon: <FiPhoneCall /> },
+        //{ name: "support", icon: <FiPhoneCall /> },
+
+        { ...((userType === "customer" || userType === "branch") && { name: "support", icon: <FiPhoneCall /> }) },
+
         { ...(isSettingsAllowed && { name: "settings", icon: <FiSettings /> }) }
     ]
 

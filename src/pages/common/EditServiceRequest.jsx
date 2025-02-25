@@ -1805,7 +1805,7 @@ const EditServiceRequest = () => {
 
                     {/* SR Status  */}
                     {/*ADD userType === 'verificationteam' && IN BELOW SEGMENT DURING THIS POINT: add sr status to verify user*/}
-                    {(userType === 'admin' || userType === 'staff') &&
+                    {(userType === 'admin' || userType === 'staff' || userType === 'verificationteam') &&
                         <div className="bg-white p-6 rounded-md mb-5">
 
                             <h1 className="font-semibold md:text-lg">SR Status</h1>
