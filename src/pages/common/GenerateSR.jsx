@@ -576,7 +576,7 @@ const GenerateSR = () => {
                     <div className="bg-white p-6 rounded-md mb-5">
                         <h1 className="font-semibold md:text-lg">Client Selection</h1>
                         <hr className="my-3" />
-                        {(userType === "branch" || userType === "admin") ?
+                        {(userType === "branch" || userType === "admin" || userType === "verificationteam") ?
                             <div className="flex mt-3 justify-between items-end gap-3">
                                 <div className="w-full">
                                     <CustomInput

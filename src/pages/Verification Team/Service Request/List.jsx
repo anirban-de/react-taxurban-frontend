@@ -9,6 +9,7 @@ import { SR_MODES } from '../../../utils/config';
 import { FiEdit } from 'react-icons/fi';
 import ActionBtn from '../../../components/shared/ActionBtn';
 import { errorToast } from '../../../utils';
+import { CustomBtn } from '../../../components';
 
 const TABLE_HEADINGS = [
   'SN',
@@ -44,11 +45,16 @@ const List = () => {
   }
 
   const ActionBtnsElement = ({ data }) => {
+    console.log('activeMode '+activeMode);
     return (
       <div className="flex gap-3">
+
+        {(activeMode !== 'Processing' && activeMode !== 'Completed' && activeMode !== 'Closed') && (
         <ActionBtn tooltip='Edit SR' onClick={() => navigation(`/verificationteam/service-request/view/${data[0]}`)}  >
           <FiEdit size={15} className="text-white" />
         </ActionBtn>
+        )}
+
         {/*{(activeMode === 'Pending' || activeMode === 'Rejected') && data[9] !== null && (
           <ActionBtn tooltip='Reason' onClick={() => toggleMoneyModal(`${data[9]}`)} >
             <BiQuestionMark size={15} className="text-white" />
@@ -73,9 +79,21 @@ const List = () => {
     )
   }
 
+  const HeaderRightContainer = () => {
+    return (
+      <div>
+        <CustomBtn
+          onClick={() => navigation('/verificationteam/service-request/generate')}
+        >
+          Generate SR
+        </CustomBtn>
+      </div>
+    )
+  }
+
   return (
     <div>
-      <SRComponent ActionBtnsElement={ActionBtnsElement} TABLE_HEADINGS={TABLE_HEADINGS} />
+      <SRComponent ActionBtnsElement={ActionBtnsElement} TABLE_HEADINGS={TABLE_HEADINGS} HeaderRightContainer={HeaderRightContainer} />
       {moneyModal && (
         <StatusReason toggleMoneyModal={toggleMoneyModal} message={message} />
       )}

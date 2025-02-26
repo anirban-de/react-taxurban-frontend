@@ -274,6 +274,7 @@ const MainRoutes = () => {
           <Route path="service-request/:mode?/:page?" element={<VerificationTeamServiceRequest />} />
           <Route path="service-request/view/:id" element={<EditSR />} />
           <Route path="account" element={<Account />} />
+          <Route path="service-request/generate" element={<GenerateSR />} />
 
           {/* GST Package */}
           <Route path="gst-package" element={<VerifyGstPackage />} />
