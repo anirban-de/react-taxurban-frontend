@@ -94,9 +94,13 @@ const Passbook = () => {
   useEffect(() => {
     if (!transreport) {
       getTransactionReport();
-      getBranch();
+      //getBranch();
     }
   }, []);
+
+  useEffect(() => {
+    getBranch();
+  });
 
   const getPageWiseData = async () => {
     try {
