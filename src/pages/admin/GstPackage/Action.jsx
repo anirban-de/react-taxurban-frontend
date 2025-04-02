@@ -33,7 +33,7 @@ const Action = () => {
     plan_duration: '',
     start_month: '',
     end_month: '',
-    base_price: ''
+    base_price: '',
   });
 
   const { id } = useParams();
@@ -83,6 +83,7 @@ const Action = () => {
       setPackageDetails({
         customer: res.data.detail.customer,
         client: res.data.detail.client_name,
+        client_id: res.data.detail.client_id,
         category: res.data.detail.category,
         gst_no: res.data.detail.gst_no,
         business_text: res.data.detail.business_text,
@@ -239,6 +240,14 @@ const Action = () => {
 
                 <div>
                   <CustomInput
+                    value={packageDetails?.client_id}
+                    disabled
+                    label={'Client ID'}
+                  />
+                </div>
+
+                <div>
+                  <CustomInput
                     disabled
                     value="GST"
                     label={'Category'}
@@ -313,14 +322,14 @@ const Action = () => {
                     </label>
                     <select
                       name="plan_duration"
-                      disabled={formData.plan_duration == ""? false: true}
+                      disabled={formData.plan_duration === ""? false: true}
                       onChange={updateFormData}
                       className=" mb-2bg-gray-50 border border-gray-300 text-gray-900 text-xs md:text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
                     >
                       <option>Select</option>
-                      <option value="3" selected={formData.plan_duration == 3? true: false }>3</option>
-                      <option value="6" selected={formData.plan_duration == 6? true: false }>6</option>
-                      <option value="12" selected={formData.plan_duration == 12? true: false }>12</option>
+                      <option value="3" selected={formData.plan_duration === 3? true: false }>3</option>
+                      <option value="6" selected={formData.plan_duration === 6? true: false }>6</option>
+                      <option value="12" selected={formData.plan_duration === 12? true: false }>12</option>
                     </select>
                   </div>
                 ):(
@@ -399,7 +408,7 @@ const Action = () => {
                   </>
                 )}
 
-                {packageDetails?.customer_request != "" && (
+                {packageDetails?.customer_request !== "" && (
                   <CustomInput
                     value={packageDetails?.customer_request}
                     disabled
@@ -439,7 +448,7 @@ const Action = () => {
               </div>
             )}
             
-            {id && packageDetails?.status != 'Complete' && (
+            {id && packageDetails?.status !== 'Complete' && (
               <>
                 <button
                   type="button"
@@ -461,7 +470,7 @@ const Action = () => {
               </>
             )}
 
-            {id && packageDetails?.package_invoice != undefined && (
+            {id && packageDetails?.package_invoice !== undefined && (
               <button
                 onClick={() => handleOpenPdf(packageDetails?.package_invoice)}
                 type="button"
@@ -471,7 +480,7 @@ const Action = () => {
               </button>
             )}
 
-            {id && packageDetails?.customer_request != "" && (
+            {id && packageDetails?.customer_request !== "" && (
               <button
                 onClick={() => setRequestModal(true)}
                 type="button"

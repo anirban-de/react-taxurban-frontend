@@ -83,6 +83,7 @@ const Action = () => {
       setPackageDetails({
         customer: res.data.detail.customer,
         client: res.data.detail.client_name,
+        client_id: res.data.detail.client_id,
         category: res.data.detail.category,
         gst_no: res.data.detail.gst_no,
         business_text: res.data.detail.business_text,
@@ -234,6 +235,14 @@ const Action = () => {
                     value={formData?.client}
                     disabled
                     label={'Client Name'}
+                  />
+                </div>
+
+                <div>
+                  <CustomInput
+                    value={packageDetails?.client_id}
+                    disabled
+                    label={'Client ID'}
                   />
                 </div>
 
