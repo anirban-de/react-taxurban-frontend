@@ -34,8 +34,13 @@ const List = () => {
         <ActionBtn tooltip='Edit SR' onClick={() => navigation(`/department/service-request/view/${data[0]}`)} >
           <FiEdit size={15} className='text-white' />
         </ActionBtn>
-        {(activeMode === 'Pending' || activeMode === 'Rejected') && data[9] !== null && (
+        {/*{(activeMode === 'Pending' || activeMode === 'Rejected') && data[9] !== null && (
           <ActionBtn tooltip='Reason' onClick={() => toggleMoneyModal(`${data[9]}`)} >
+            <BiQuestionMark size={15} className="text-white" />
+          </ActionBtn>
+        )}*/}
+        {(activeMode === 'Pending' || activeMode === 'Rejected') && data[11] !== null && (
+          <ActionBtn tooltip='Reason' onClick={() => toggleMoneyModal(`${data[11]}`)} >
             <BiQuestionMark size={15} className="text-white" />
           </ActionBtn>
         )}

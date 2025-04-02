@@ -83,6 +83,8 @@ const AdminServiceRequest = () => {
   }
 
   const ActionBtnsElement = ({ data }) => {
+    //alert(activeMode);
+    //alert(data[9]);
     return (
       <div className="flex gap-3">
          {(activeMode === SR_MODES[1] || activeMode === SR_MODES[3]) && data[9] !== null && (
@@ -126,7 +128,7 @@ const AdminServiceRequest = () => {
             </ActionBtn>
         )}
 
-        {(activeMode === SR_MODES[5] || activeMode === SR_MODES[6]) && data[9] !== null && (
+        {(activeMode === SR_MODES[5] || activeMode === SR_MODES[6]) && data[11] !== null && (
           <ActionBtn tooltip='Reason' onClick={() => toggleReasonModal(`${data[11]}`)} >
             <BiQuestionMark size={15} className="text-white" />
           </ActionBtn>

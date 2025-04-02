@@ -55,7 +55,10 @@ const BranchServiceRequest = () => {
           </ActionBtn>
         )}
 
-        {data[7] !== null && (
+        {/*&& activeMode !== 'Pending' && activeMode !== 'Rejected'*/}
+        {/*added above code to below condition @ 02-Apr-25*/}
+
+        {data[7] !== null && activeMode !== 'Pending' && activeMode !== 'Rejected' && (
           <ActionBtn tooltip="Payment" onClick={() => navigation(`/branch/service-request/${activeMode}/payment/${data[0]}`)} >
             <BiRupee size={15} className=" text-white" />
           </ActionBtn>
@@ -70,13 +73,19 @@ const BranchServiceRequest = () => {
           </ActionBtn>
         )}
 
-        {(activeMode === SR_MODES[5] || activeMode === SR_MODES[6]) && data[9] !== null && (
+        {/*{(activeMode === SR_MODES[5] || activeMode === SR_MODES[6]) && data[9] !== null && (
           <ActionBtn tooltip='Pending Reason'>
             <BiQuestionMark
               onClick={() => toggleReasonModal(`${data[9]}`)}
               size={15}
               className="text-white"
             />
+          </ActionBtn>
+        )}*/}
+
+        {(activeMode === 'Pending' || activeMode === 'Rejected') && data[11] !== null && (
+          <ActionBtn tooltip='Reason' onClick={() => toggleReasonModal(`${data[11]}`)} >
+            <BiQuestionMark size={15} className="text-white" />
           </ActionBtn>
         )}
       </div>
