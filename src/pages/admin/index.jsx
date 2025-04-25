@@ -38,7 +38,12 @@ const LINKS = [
         icon: <FiGrid size={20} />,
         name: 'branch-received-voucher',
         route: '/admin/branch-received-voucher',
-      }
+      },
+      // {
+      //   icon: <FiGrid size={20} />,
+      //   name: 'branch-list',
+      //   route: '/admin/branch-list',
+      // }
     ]
   },
   {

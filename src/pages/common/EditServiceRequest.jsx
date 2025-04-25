@@ -100,6 +100,8 @@ const EditServiceRequest = () => {
 
     const [gstpackage,setGstPackage] = useState({});
 
+
+
     const ifNull = value => {
         if (value === null) {
             return '';
@@ -362,7 +364,7 @@ const EditServiceRequest = () => {
                                     if(res.data.package_id > 0)
                                     {
 
-                                        const selectedPackage = res.data.client_packages.find((item) => item.id == package_id);
+                                        const selectedPackage = res.data.client_packages.find((item) => item.id === package_id);
                                         setTotalAmount(selectedPackage?.base_price);
                                         
                                     }
@@ -443,7 +445,7 @@ const EditServiceRequest = () => {
                         res.data.service.service_type,
                         res.data.service.category_id
                     );
-                    if(res.data.sr.status == 'Processing'||res.data.sr.status == 'Completed'||res.data.sr.status == 'Closed'){
+                    if(res.data.sr.status === 'Processing'|| res.data.sr.status === 'Completed' || res.data.sr.status === 'Closed'){
                         console.log('srstatus '+res.data.sr.status);
                         console.log('paymentstatus '+res.data.package.paymentstatus);
                         setBtnDisable("disabled");
@@ -458,20 +460,21 @@ const EditServiceRequest = () => {
         }
     };
 
-
-
-
-
-
-
-
-
+    const [paymentSetBtnDisable, setPaymentSetBtnDisable] = useState("");
 
     const getPayment = async () => {
         try {
             await axios.get(`api/get-payment-details/${id}`).then((res) => {
                 if (res.data.status === 200) {
+                    console.log("get-payment-details");
+                    console.log(res.data);
+                    
                     setPayment(res.data.sr);
+
+                    console.log("token_invoice= "+res.data.sr.token_invoice);
+                    if(res.data.sr.token_invoice !== null){
+                        setPaymentSetBtnDisable("disabled");
+                    }
                 }
             });
         } catch (error) {
@@ -1741,6 +1744,7 @@ const EditServiceRequest = () => {
                                 />
                                 {payment.payment_id_total === null && (
                                     <CustomBtn
+                                        disabled={paymentSetBtnDisable}
                                         type="button"
                                         onClick={submitTotalAmount}
                                     >

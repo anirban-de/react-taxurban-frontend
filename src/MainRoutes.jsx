@@ -76,6 +76,7 @@ const AdminActionUnit = loadable(() => import('./pages/admin/Unit/Action'));
 const SrReport = loadable(() => import('./pages/admin/Reports/SrReport'));
 const InvoiceReport = loadable(() => import('./pages/admin/Reports/InvoiceReport'));
 const BranchReceivedVoucher = loadable(() => import('./pages/admin/Reports/BranchReceivedVoucher'));
+const BranchList = loadable(() => import('./pages/admin/Reports/BranchList'));
 
 // Gst Package Customer
 const GstPackage = loadable(() => import('./pages/Customer/GstPackage/List'));
@@ -177,6 +178,7 @@ const MainRoutes = () => {
           <Route path="sr-report" element={<SrReport />} />
           <Route path="invoice-report" element={<InvoiceReport />} />
           <Route path="branch-received-voucher" element={<BranchReceivedVoucher />} />
+          <Route path="branch-list" element={<BranchList />} />
           {/* GST Package */}
           <Route path="gst-package" element={<AdminGstPackage />} />
           <Route path="gst-package/add" element={<AdminActionGstPackage />} />

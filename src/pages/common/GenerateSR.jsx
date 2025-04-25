@@ -254,7 +254,9 @@ const GenerateSR = () => {
 
     const updateClientDetails = async (e) => {
         const { name, value } = e.target;
-        if(value.length < 0){
+
+        //if(value.length < 0){    //previous code
+        if(value.length < 0 || value === ""){    //newly added @ 04-04-2025
             setPackageSelect(false);
             setCategorySelect("");
             return;
